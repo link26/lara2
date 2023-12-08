@@ -10,12 +10,11 @@ class EnsureUserIsAdmin
     public function handle($request, Closure $next)
     {
         if (!auth()->check() || !auth()->user()->is_admin) {
-            // Перенаправление неавторизованного пользователя
-            #return redirect('home');
-            dd('Вы не админ');
+            // Возвращаем объект ответа
+            return response()->view('auth.not_admin');
         }
 
         return $next($request);
     }
-
 }
+
