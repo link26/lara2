@@ -9,6 +9,9 @@
 <h1>Добро пожаловать в Админ Панель</h1>
 <!-- Дополнительное содержимое -->
 
+<a href="/admin/news">Новости</a>
+<br><br>
+
 
 <form action="{{ route('logout') }}" method="POST">
     @csrf

@@ -8,36 +8,36 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsAdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+//новости
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
 
 Route::get('/contact', [PagesController::class, 'contact']);
 
+//авторизация
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [RegisterController::class, 'register']);
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // Измененный маршрут
+Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // Измененный
 
-//Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
-
+//админка
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
-    // Добавьте здесь другие маршруты административной панели
-});
 
+    Route::get('/admin/news', [NewsAdminController::class, 'index'])->name('news.index');
+    Route::get('/admin/news/create', [NewsAdminController::class, 'create'])->name('news.create');
+    Route::post('/admin/news', [NewsAdminController::class, 'store'])->name('news.store');
+    Route::get('/admin/news/{news}/edit', [NewsAdminController::class, 'edit'])->name('news.edit');
+    Route::put('/admin/news/{news}', [NewsAdminController::class, 'update'])->name('news.update');
+    //здесь все что в админке
+});
