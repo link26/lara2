@@ -16,6 +16,13 @@ class NewsController extends Controller
         //return view('news.index', compact('latestNews'));
     }
 
+    public function newsp()
+    {
+        $latestNews = News::latest()->take(5)->get();
+        return view('news.index', compact('latestNews'));
+        //return view('news.index', compact('latestNews'));
+    }
+
     public function show($id)
     {
         $news = News::findOrFail($id);

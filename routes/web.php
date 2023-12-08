@@ -19,11 +19,11 @@ Route::get('/', function () {
 Route::get('/', [NewsController::class, 'index']);
 
 //новости
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news', [NewsController::class, 'newsp'])->name('news.index');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
-
-Route::get('/contact', [PagesController::class, 'contact']);
+Route::get('/about', [PagesController::class, 'about']);
+Route::get('/contacts', [PagesController::class, 'contacts']);
 
 //авторизация
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
