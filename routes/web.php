@@ -11,10 +11,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsAdminController;
 
-
+/*
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/', [NewsController::class, 'index']);
 
 //новости
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
