@@ -33,5 +33,11 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // Измененный маршрут
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
+
+//Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+    // Добавьте здесь другие маршруты административной панели
+});
 
