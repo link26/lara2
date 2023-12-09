@@ -4,15 +4,22 @@
 
 @section('content')
     <h1>Создать страницу</h1>
+
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('pages.store') }}" method="POST">
         @csrf
         <div>
             <label>Название</label>
             <input type="text" name="title" required>
-        </div>
-        <div>
-            <label>ЧПУ</label>
-            <input type="text" name="slug" required>
         </div>
         <div>
             <label>Содержание</label>
