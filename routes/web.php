@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsAdminController;
 
+
 /*
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,30 @@ Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/about', [PagesController::class, 'about']);
 Route::get('/contacts', [PagesController::class, 'contacts']);
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+
+Route::post('/change-city', function (Request $request) {
+    $city = $request->input('city');
+    $phones = [
+        'Москва' => '495 123 45 67',
+        'Екатеринбург' => '343 987 65 43',
+        'Санкт-Петербург' => '812 313 34 4',
+        // Добавьте другие города и телефоны здесь
+    ];
+
+    $phone = $phones[$city] ?? '';
+
+    // Установка значения cookie
+    Cookie::queue('city', $city, 60 * 24 * 30); // Сохраняется на 30 дней
+    Cookie::queue('phone', $phone, 60 * 24 * 30); // Сохраняется на 30 дней
+
+    return back();
+});
+
+
 
 //авторизация
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');

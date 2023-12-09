@@ -1,23 +1,65 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>@yield('title', 'Default Title')</title>
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        </head>
 
-        <nav>
+<div style="padding-left: 40px;">
+
+    @php
+        $currentCity = request()->cookie('city', 'Санкт-Петербург');
+        $cities = ['Санкт-Петербург', 'Москва', 'Екатеринбург']; // Добавьте все города здесь
+    @endphp
+
+    <ul>
+        <li class="menu-item-has-children">
+            <a href="#" class="header-head-city-link">
+                <svg width="24" height="24"><use xlink:href="#icon-pin"></use></svg>
+                <span>{{ $currentCity }}</span>
+                <i><svg width="12" height="12">
+                        <use xlink:href="#icon-angle-down"></use></svg></i>
+            </a>
+            <ul class="sub-menu">
+                @foreach ($cities as $city)
+                    @if ($city !== $currentCity)
+                        <li>
+                            <form action="/change-city" method="post">
+                                @csrf
+                                <input type="hidden" name="city" value="{{ $city }}">
+                                <a href="#" onclick="this.closest('form').submit(); return false;">{{ $city }}</a>
+                            </form>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </li>
+    </ul>
+
+
+    Телефон: <span id="phone">{{ request()->cookie('phone', '812 313 34 4') }}</span>
+
+
+    <hr>
+
+
+    <nav>
             <ul>
-
+                <li><a href="/" style="text-decoration: none;">Главная</a></li>
                 <li><a href="/about" style="text-decoration: none;">О нас</a></li>
                 <li><a href="/news" style="text-decoration: none;">Новости</a></li>
                 <li><a href="/contacts" style="text-decoration: none;">Контакты</a></li>
             </ul>
         </nav>
+        <hr>
 
 
-    </head>
+
+
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
@@ -50,5 +92,6 @@
 
 
         </div>
+</div>
     </body>
 </html>
