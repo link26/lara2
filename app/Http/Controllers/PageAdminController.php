@@ -24,6 +24,7 @@ class PageAdminController extends Controller
             'title' => 'required',
             'slug' => 'required',
             'content' => 'required',
+            'link' => 'nullable|url'
         ]);
 
         $maxOrder = Page::max('order');
@@ -34,9 +35,17 @@ class PageAdminController extends Controller
             'slug' => $validatedData['slug'],
             'content' => $validatedData['content'],
             'order' => $nextOrder,
+            'link' => $validatedData['link']
         ]);
 
         return redirect()->route('pages.index');
+    }
+
+
+
+    public function createLinkPage()
+    {
+        return view('admin.pages.create_link');
     }
 
     public function edit(Page $page)

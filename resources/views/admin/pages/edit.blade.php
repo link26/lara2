@@ -18,6 +18,10 @@
             {!! Form::textarea('content', $page->content, ['id' => 'editor']) !!}
 
         </div>
+        <div>
+            <label>Ссылка URL </label>
+            <input type="text" name="link" value="{{ $page->link }}" > (если страница является ссылкой, то форма выше не заполняется)
+        </div>
         <button type="submit">Сохранить изменения</button>
     </form>
 

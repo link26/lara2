@@ -59,9 +59,17 @@
                 <li><a href="/categories" style="text-decoration: none;">Каталог</a></li>
             </ul>
         </nav>
-        <hr>
 
 
+            <hr>
+
+            <nav>
+                <ul>
+                    @foreach ($menuPages as $page)
+                        <li><a href="{{ url('/page/'.$page->slug) }}">{{ $page->title }}</a></li>
+                    @endforeach
+                </ul>
+            </nav>
 
 
     <body class="antialiased">
