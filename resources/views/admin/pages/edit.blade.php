@@ -10,10 +10,6 @@
             <input type="text" name="title" value="{{ $page->title }}" required>
         </div>
         <div>
-            <label>Слаг (URL)</label>
-            <input type="text" name="slug" value="{{ $page->slug }}" required>
-        </div>
-        <div>
             <label>Содержание</label>
             {!! Form::textarea('content', $page->content, ['id' => 'editor']) !!}
 
