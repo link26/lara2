@@ -49,24 +49,16 @@
 
     <hr>
 
-
-    <nav>
-            <ul>
-                <li><a href="/" style="text-decoration: none;">Главная</a></li>
-                <li><a href="/about" style="text-decoration: none;">О нас</a></li>
-                <li><a href="/news" style="text-decoration: none;">Новости</a></li>
-                <li><a href="/contacts" style="text-decoration: none;">Контакты</a></li>
-                <li><a href="/categories" style="text-decoration: none;">Каталог</a></li>
-            </ul>
-        </nav>
-
-
-            <hr>
-
             <nav>
                 <ul>
                     @foreach ($menuPages as $page)
-                        <li><a href="{{ url('/page/'.$page->slug) }}">{{ $page->title }}</a></li>
+                        <li>
+                            @if($page->link)
+                                <a href="{{ $page->link }}">{{ $page->title }}</a>
+                            @else
+                                <a href="{{ url('/page/'.$page->slug) }}">{{ $page->title }}</a>
+                            @endif
+                        </li>
                     @endforeach
                 </ul>
             </nav>
