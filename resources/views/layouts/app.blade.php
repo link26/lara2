@@ -44,23 +44,27 @@
 
         Телефон: <span id="phone">{{ request()->cookie('phone', '812 313 34 4') }}</span>
 
-
-
         <hr>
 
-    <nav>
-        <ul>
-            <li><a href="/" style="text-decoration: none;">Главная</a></li>
-            <li><a href="/about" style="text-decoration: none;">О нас</a></li>
-            <li><a href="/news" style="text-decoration: none;">Новости</a></li>
-            <li><a href="/contacts" style="text-decoration: none;">Контакты</a></li>
-            <li><a href="/categories" style="text-decoration: none;">Каталог</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                @foreach ($menuPages as $page)
+                    <li>
+                        @if($page->link)
+                            <a href="{{ $page->link }}">{{ $page->title }}</a>
+                        @else
+                            <a href="{{ url('/page/'.$page->slug) }}">{{ $page->title }}</a>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        </nav>
 
 
 
-<body class="antialiased">
+
+
+        <body class="antialiased">
 <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
     @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">

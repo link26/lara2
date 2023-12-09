@@ -85,4 +85,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/pages/{page}', [PageAdminController::class, 'update'])->name('pages.update');
     Route::delete('/admin/pages/{page}', [PageAdminController::class, 'destroy'])->name('pages.destroy');
 
+
 });

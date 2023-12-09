@@ -10,13 +10,13 @@
             <input type="text" name="title" value="{{ $page->title }}" required>
         </div>
         <div>
-            <label>Слаг (URL)</label>
-            <input type="text" name="slug" value="{{ $page->slug }}" required>
-        </div>
-        <div>
             <label>Содержание</label>
             {!! Form::textarea('content', $page->content, ['id' => 'editor']) !!}
 
+        </div>
+        <div>
+            <label>Ссылка URL </label>
+            <input type="text" name="link" value="{{ $page->link }}" > (если страница является ссылкой, то форма выше не заполняется)
         </div>
         <button type="submit">Сохранить изменения</button>
     </form>
