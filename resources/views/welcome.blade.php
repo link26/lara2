@@ -10,8 +10,6 @@
         </head>
 
 
-        <img src="{{ asset('storage/categories/link.png') }}">
-        <img src="{{ asset('storage/categories/pmuD7UrE9thav4joVrvdF49qSEZRDtGgwWT8VIHn.png') }}">
 
 
         <div style="padding-left: 40px;">
@@ -58,6 +56,7 @@
                 <li><a href="/about" style="text-decoration: none;">О нас</a></li>
                 <li><a href="/news" style="text-decoration: none;">Новости</a></li>
                 <li><a href="/contacts" style="text-decoration: none;">Контакты</a></li>
+                <li><a href="/categories" style="text-decoration: none;">Каталог</a></li>
             </ul>
         </nav>
         <hr>

@@ -7,7 +7,6 @@
         @foreach ($categories as $category)
             <li>
                 {{ $category->category_name }}
-                <a href="{{ route('admin.categories.show', $category) }}">Просмотреть</a>
                 <a href="{{ route('admin.categories.edit', $category) }}">Редактировать</a>
                 <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                     @csrf

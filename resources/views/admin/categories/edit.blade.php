@@ -16,10 +16,7 @@
         <input type="file" id="category_photo" name="category_photo">
         @if($category->category_photo)
             <div>
-                <img src="{{ asset('storage/'.$category->category_photo) }}" alt="Фото категории" style="max-width: 200px;">22
-                <img src="{{ asset('storage/categories/'.$category->category_photo) }}" alt="Фото категории" style="max-width: 200px;">
-                <img src="{{ url('storage/'.$category->category_photo) }}" alt="Фото категории" style="max-width: 200px;">
-
+                <img src="{{ asset('storage/'.$category->category_photo) }}" alt="Фото категории" style="max-width: 200px;">
             </div>
         @endif
 

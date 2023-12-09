@@ -3,18 +3,19 @@
 
 @section('content')
     <h1>Категории</h1>
-    <a href="{{ route('categories.create') }}">Создать новую категорию</a>
+
     <ul>
         @foreach ($categories as $category)
             <li>
-                {{ $category->category_name }}
-                <a href="{{ route('categories.show', $category) }}">Просмотреть</a>
-                <a href="{{ route('categories.edit', $category) }}">Редактировать</a>
-                <form action="{{ route('categories.destroy', $category) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Удалить</button>
-                </form>
+                {{-- Ссылка на категорию --}}
+                <h3><a href="{{ route('categories.show', $category->id) }}">{{ $category->category_name }}</a></h3>
+
+                {{-- Отображение фото, если оно есть --}}
+                @if ($category->category_photo)
+                    <img src="{{ asset('storage/' . $category->category_photo) }}" alt="Фото {{ $category->category_name }}" style="max-width: 200px;">
+                @else
+                    <p>Фото для этой категории отсутствует.</p>
+                @endif
             </li>
         @endforeach
     </ul>
