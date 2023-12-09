@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Административная Панель в папке до админа</title>
     <!-- Сюда можно добавить ссылки на стили и скрипты -->
+    
 </head>
 <body>
 <header>
@@ -15,6 +16,7 @@
 <a href="/admin/">Главная</a>
 <a href="/admin/news">Новости</a>
 <a href="/admin/categories">Каталог</a>
+<a href="/admin/pages">Страницы</a>
 <br><br>
 
 <main>
