@@ -1,7 +1,16 @@
 <!-- resources/views/admin/news/index.blade.php -->
 
-@foreach($news as $item)
-    <p>{{ $item->title }} - <a href="{{ route('news.edit', $item) }}">Edit</a></p>
-@endforeach
+@extends('layouts.admin')
 
-<a href="{{ route('news.create') }}">Add News</a>
+@section('content')
+
+    <h1>Новости</h1>
+
+    @foreach($news as $item)
+        <p>{{ $item->title }} - <a href="{{ route('news.edit', $item) }}">Edit</a></p>
+    @endforeach
+
+    <a href="{{ route('news.create') }}">Add News</a>
+
+
+@endsection
