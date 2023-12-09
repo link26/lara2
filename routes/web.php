@@ -2,27 +2,16 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\NewsAdminController;
-
-//каталог
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\BrandController;
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
 
 Route::get('/', [NewsController::class, 'index']);
 
 //новости
+use App\Http\Controllers\NewsController;
 Route::get('/news', [NewsController::class, 'newsp'])->name('news.index');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
@@ -33,9 +22,8 @@ Route::get('/contacts', [PagesController::class, 'contacts']);
 use App\Http\Controllers\PageController;
 Route::get('/page/{slug}', [PageController::class, 'show']);
 
-use Illuminate\Http\Request;
+//смена города и куки
 use Illuminate\Support\Facades\Cookie;
-
 Route::post('/change-city', function (Request $request) {
     $city = $request->input('city');
     $phones = [
@@ -55,11 +43,10 @@ Route::post('/change-city', function (Request $request) {
 });
 
 //каталог
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 Route::resource('categories', CategoryController::class);
 Route::resource('brands', BrandController::class);
-
-
-
 
 //авторизация
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -70,6 +57,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // И�
 
 //админка
 use App\Http\Controllers\PageAdminController;
+use App\Http\Controllers\NewsAdminController;
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
