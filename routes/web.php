@@ -11,6 +11,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsAdminController;
 
+//каталог
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 
 /*
 Route::get('/', function () {
@@ -48,7 +51,9 @@ Route::post('/change-city', function (Request $request) {
     return back();
 });
 
-
+//каталог
+Route::resource('categories', CategoryController::class);
+Route::resource('brands', BrandController::class);
 
 //авторизация
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -66,5 +71,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/news', [NewsAdminController::class, 'store'])->name('news.store');
     Route::get('/admin/news/{news}/edit', [NewsAdminController::class, 'edit'])->name('news.edit');
     Route::put('/admin/news/{news}', [NewsAdminController::class, 'update'])->name('news.update');
-    //здесь все что в админке
+
+    // Маршруты для категорий
+    Route::get('/admin/categories', [CategoryAdminController::class, 'index'])->name('admin.categories.index');
+    Route::get('/admin/categories/create', [CategoryAdminController::class, 'create'])->name('admin.categories.create');
+    Route::post('/admin/categories', [CategoryAdminController::class, 'store'])->name('admin.categories.store');
+    Route::get('/admin/categories/{category}', [CategoryAdminController::class, 'show'])->name('admin.categories.show');
+    Route::get('/admin/categories/{category}/edit', [CategoryAdminController::class, 'edit'])->name('admin.categories.edit');
+    Route::put('/admin/categories/{category}', [CategoryAdminController::class, 'update'])->name('admin.categories.update');
+    Route::delete('/admin/categories/{category}', [CategoryAdminController::class, 'destroy'])->name('admin.categories.destroy');
+
 });

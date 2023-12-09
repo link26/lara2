@@ -42,7 +42,7 @@
         </ul>
 
 
-        Телефон: <span id="phone">{{ session('phone', '812 313 34 4') }}</span>
+        Телефон: <span id="phone">{{ request()->cookie('phone', '812 313 34 4') }}</span>
 
 
 
