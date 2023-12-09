@@ -29,6 +29,9 @@ Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/about', [PagesController::class, 'about']);
 Route::get('/contacts', [PagesController::class, 'contacts']);
 
+//страницы
+use App\Http\Controllers\PageController;
+Route::get('/page/{slug}', [PageController::class, 'show']);
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -55,6 +58,9 @@ Route::post('/change-city', function (Request $request) {
 Route::resource('categories', CategoryController::class);
 Route::resource('brands', BrandController::class);
 
+
+
+
 //авторизация
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [RegisterController::class, 'register']);
@@ -63,6 +69,8 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // Измененный
 
 //админка
+use App\Http\Controllers\PageAdminController;
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
 
@@ -80,5 +88,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/categories/{category}/edit', [CategoryAdminController::class, 'edit'])->name('admin.categories.edit');
     Route::put('/admin/categories/{category}', [CategoryAdminController::class, 'update'])->name('admin.categories.update');
     Route::delete('/admin/categories/{category}', [CategoryAdminController::class, 'destroy'])->name('admin.categories.destroy');
+
+    // Маршруты для администрирования страниц
+    Route::get('/admin/pages', [PageAdminController::class, 'index'])->name('pages.index');
+    Route::get('/admin/pages/create', [PageAdminController::class, 'create'])->name('pages.create');
+    Route::post('/admin/pages', [PageAdminController::class, 'store'])->name('pages.store');
+    Route::get('/admin/pages/{page}/edit', [PageAdminController::class, 'edit'])->name('pages.edit');
+    Route::put('/admin/pages/{page}', [PageAdminController::class, 'update'])->name('pages.update');
+    Route::delete('/admin/pages/{page}', [PageAdminController::class, 'destroy'])->name('pages.destroy');
 
 });

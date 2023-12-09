@@ -1,6 +1,5 @@
 <!-- resources/views/admin/news/create.blade.php -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +49,6 @@
         }
     </style>
 
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
 
 
 </head>
@@ -66,7 +63,7 @@
     <button type="submit">Add News</button>
 </form>
 
-<!--<script src="{{ asset('path/to/tinymce/tinymce.min.js') }}"></script>-->
+
 <script src="https://cdn.tiny.cloud/1/qxo8orvilcs1r6me8dc1st7924eesz0lgni0x3vgm5g4luk6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
