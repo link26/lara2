@@ -23,7 +23,7 @@ class PageAdminController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'slug' => 'required',
-            'content' => 'required',
+            'content' => 'nullable|url',
             'link' => 'nullable|url'
         ]);
 

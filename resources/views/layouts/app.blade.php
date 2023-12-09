@@ -63,10 +63,17 @@
         <nav>
             <ul>
                 @foreach ($menuPages as $page)
-                    <li><a href="{{ url('/page/'.$page->slug) }}">{{ $page->title }}</a></li>
+                    <li>
+                        @if($page->link)
+                            <a href="{{ $page->link }}">{{ $page->title }}</a>
+                        @else
+                            <a href="{{ url('/page/'.$page->slug) }}">{{ $page->title }}</a>
+                        @endif
+                    </li>
                 @endforeach
             </ul>
         </nav>
+
 
 
 
