@@ -77,6 +77,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/categories/{category}', [CategoryAdminController::class, 'update'])->name('admin.categories.update');
     Route::delete('/admin/categories/{category}', [CategoryAdminController::class, 'destroy'])->name('admin.categories.destroy');
 
+    // Маршруты для управления брендами
+    Route::get('/admin/brands', [BrandCategoryAdminController::class, 'index'])->name('admin.brands.index');
+    Route::get('/admin/brands/create', [BrandCategoryAdminController::class, 'create'])->name('admin.brands.create');
+    Route::post('/admin/brands', [BrandCategoryAdminController::class, 'store'])->name('admin.brands.store');
+    Route::get('/admin/brands/{brand}/edit', [BrandCategoryAdminController::class, 'edit'])->name('admin.brands.edit');
+    Route::put('/admin/brands/{brand}', [BrandCategoryAdminController::class, 'update'])->name('admin.brands.update');
+    Route::delete('/admin/brands/{brand}', [BrandCategoryAdminController::class, 'destroy'])->name('admin.brands.destroy');
+
     // Маршруты для администрирования страниц
     Route::get('/admin/pages', [PageAdminController::class, 'index'])->name('pages.index');
     Route::get('/admin/pages/create', [PageAdminController::class, 'create'])->name('pages.create');

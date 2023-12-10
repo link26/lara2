@@ -7,7 +7,7 @@
     <p>{{ $brand->brand_text_napr }}</p>
     <!-- Вывод фото и PDF, если они есть -->
     @if($brand->brand_photo)
-        <img src="{{ url($brand->brand_photo) }}" alt="Фото бренда">
+        <img src="{{ url('storage/'.$brand->brand_photo) }}" alt="Фото бренда">
     @endif
     @if($brand->brand_pdf)
         <a href="{{ url($brand->brand_pdf) }}">Скачать PDF</a>
