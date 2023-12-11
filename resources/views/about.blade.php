@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Тайтл о компании')
+
 @section('content')
     <h1>О нас</h1>
     <p>Это страница о нас.</p>

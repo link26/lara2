@@ -1,7 +1,7 @@
 <!-- resources/views/news/index.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Latest News')
+@section('title', 'Новости')
 
 @section('content')
     <h1>Latest News</h1>
