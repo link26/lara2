@@ -23,8 +23,9 @@ class NewsController extends Controller
 
     public function newsp()
     {
-        $latestNews = News::latest()->take(5)->get();
-        return view('news.index', compact('latestNews'));
+        //все новости
+        $News = News::latest()->paginate(6);
+        return view('news.index', compact('News'));
         //return view('news.index', compact('latestNews'));
     }
 
@@ -33,13 +34,5 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         return view('news.show', compact('news'));
     }
-/*
-    public function last($id)
-    {
-        // Получение последних 4 новостей
-        $latestNews = News::orderBy('created_at', 'desc')->take(4)->get();
 
-        // Передача новостей в вид
-        return view('welcome', ['latestNews' => $latestNews]);
-    }*/
 }

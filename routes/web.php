@@ -12,8 +12,8 @@ Route::get('/', [NewsController::class, 'index']);
 
 //новости
 use App\Http\Controllers\NewsController;
-Route::get('/news', [NewsController::class, 'newsp'])->name('news.index');
-Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/news', [NewsController::class, 'newsp'])->name('news.index');//все новости
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');//ссылка на кокретную новость
 
 Route::get('/about', [PagesController::class, 'about']);
 Route::get('/contacts', [PagesController::class, 'contacts']);
