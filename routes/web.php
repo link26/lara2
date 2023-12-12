@@ -42,6 +42,14 @@ Route::post('/change-city', function (Request $request) {
     return back();
 });
 
+
+//форма обратной связи
+use App\Http\Controllers\ContactController;
+
+Route::get('/contact', [ContactController::class, 'create']);
+Route::post('/contact', [ContactController::class, 'sendEmail']);
+
+
 //каталог
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
