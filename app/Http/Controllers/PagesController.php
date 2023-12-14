@@ -15,4 +15,12 @@ class PagesController extends Controller
     {
         return view('about');
     }
+
+
+
+    public function gorod()
+    {
+        return view('gorod');
+    }
+
 }

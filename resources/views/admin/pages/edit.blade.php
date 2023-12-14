@@ -1,5 +1,13 @@
 @extends('layouts.admin')
 
+<!-- Toast UI Editor CSS -->
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- Toast UI Editor JS -->
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+
+
 @section('content')
     <h1>Редактировать страницу</h1>
     <form action="{{ route('pages.update', $page) }}" method="POST">
@@ -9,11 +17,12 @@
             <label>Название</label>
             <input type="text" name="title" value="{{ $page->title }}" required>
         </div>
-        <div>
-            <label>Содержание</label>
-            {!! Form::textarea('content', $page->content, ['id' => 'editor']) !!}
 
-        </div>
+        <div id="editor"></div>
+        <textarea id="editor-textarea" name="content" style="display:none;">{{ $page->content }}</textarea>
+
+
+
         <div>
             <label>Ссылка URL </label>
             <input type="text" name="link" value="{{ $page->link }}" > (если страница является ссылкой, то форма выше не заполняется)
@@ -21,13 +30,20 @@
         <button type="submit">Сохранить изменения</button>
     </form>
 
-    <script src="https://cdn.tiny.cloud/1/qxo8orvilcs1r6me8dc1st7924eesz0lgni0x3vgm5g4luk6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        tinymce.init({
-            selector: '#editor',
-            plugins: 'advlist autolink lists link image charmap print preview anchor',
-            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        document.addEventListener('DOMContentLoaded', function () {
+            const editor = new toastui.Editor({
+                el: document.querySelector('#editor'),
+                height: '500px',
+                initialEditType: 'markdown',
+                previewStyle: 'vertical',
+                initialValue: document.querySelector('#editor-textarea').value
+            });
+
+            // Синхронизация содержимого редактора с textarea
+            editor.on('change', () => {
+                document.querySelector('#editor-textarea').value = editor.getMarkdown();
+            });
         });
     </script>
 

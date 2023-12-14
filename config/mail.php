@@ -33,15 +33,17 @@ return [
     |
     */
 
+
+
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
-            'host' => env('MAIL_HOST', 'smtp.yandex.ru'),
-            'port' => env('MAIL_PORT', 465),
-            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
-            'username' => env('davidblain83@yandex.ru'),
-            'password' => env('xj&749ffJ76$%^jjj8'),
+            'host' => env('MAIL_HOST', 'mail.yeint.ru'),
+            'port' => env('MAIL_PORT', 5877),
+            'encryption' => env('MAIL_ENCRYPTION', 'null'),
+            'username' => env('ye\site.yeint.ru'),
+            'password' => env('8!47af0Kn2#'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],

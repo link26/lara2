@@ -17,6 +17,12 @@ Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');//�
 
 Route::get('/about', [PagesController::class, 'about']);
 Route::get('/contacts', [PagesController::class, 'contacts']);
+Route::get('/gorod', [PagesController::class, 'gorod']);
+
+//определение города
+use App\Http\Controllers\GeoLocationController;
+Route::get('gorod', [GeoLocationController::class, 'index']);
+
 
 //страницы
 use App\Http\Controllers\PageController;

@@ -6,19 +6,32 @@
 
     <title>@yield('title', 'Default Title')</title>
 
+    <style>
+        .black-background {
+            background-color: black;
+            color: white; /* Для контраста текста */
+        }
+    </style>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Лайтбокс -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 </head>
 
 <body class="antialiased">
+    <div class="black-background">
+    @include('partials.header')
 
-@include('partials.header')
+        <div class="container">
+            @yield('content') <!-- Содержимое конкретной страницы -->
+        </div>
 
-    <div class="container">
-        @yield('content') <!-- Содержимое конкретной страницы -->
+    @include('partials.footer')
+         <!-- Ссылки на JavaScript -->
     </div>
-
-     <!-- Пример включения подвала @ include('partials.footer') -->
-     <!-- Ссылки на JavaScript -->
 </body>
 </html>
