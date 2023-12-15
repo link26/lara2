@@ -19,6 +19,8 @@ class SearchController extends Controller
             ->orWhere('content', 'like', "%{$query}%")
             ->get();
 
-        return view('search_results', compact('pages')); // Убедитесь, что у вас есть это представление
+        $brands = Brand::where('brand_name', 'like', "%{$query}%")->get();
+
+        return view('search_results', compact('pages', 'brands')); // Убедитесь, что у вас есть это представление
     }
 }

@@ -28,6 +28,20 @@
             @endforelse
         </div>
 
+        {{-- Блок брендов --}}
+        <div>
+            <h2>Бренды</h2>
+            @forelse($brands as $brand)
+                <div>
+                    <h3><a href="{{ route('brands.show', $brand->id) }}">{{ $brand->brand_name }}</a></h3>
+                    {{-- Дополнительная информация о бренде --}}
+                </div>
+            @empty
+                <p>Бренды не найдены.</p>
+            @endforelse
+        </div>
+
+
 
     </div>
 @endsection
