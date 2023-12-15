@@ -72,7 +72,6 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // И�
 
 //поиск
 use App\Http\Controllers\SearchController;
-
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 

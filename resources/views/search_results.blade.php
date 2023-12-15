@@ -5,16 +5,29 @@
 @section('content')
     <h1>Результаты Поиска</h1>
 
+    <form action="{{ route('search') }}" method="GET">
+        <input type="text" name="query" value="{{ request('query') }}" required/>
+        <button type="submit">Поиск</button>
+    </form>
+
+
     <div>
-        <h2>Страницы</h2><hr/>
-        @forelse($pages as $page)
-            <div>
-                <h3>{{ $page->title }}</h3>
-                <p>{!! Str::limit($page->content, 200) !!}</p>
-            </div>
-            <hr/>
-        @empty
-            <p>Страницы не найдены.</p>
-        @endforelse
+        <h2>Страницы:</h2><hr/>
+
+
+        {{-- Блок страниц --}}
+        <div>
+            <h2>Страницы</h2>
+            @forelse($pages as $page)
+                <div>
+                    <h3><a href="{{ url('/page/' . $page->slug) }}">{{ $page->title }}</a></h3>
+                    <br/>{!! Str::limit($page->content, 200) !!}
+                </div>
+            @empty
+                <p>Страницы не найдены.</p>
+            @endforelse
+        </div>
+
+
     </div>
 @endsection
