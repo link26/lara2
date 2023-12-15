@@ -23,6 +23,12 @@
 </head>
 
 <body class="antialiased">
+
+<form action="{{ route('search') }}" method="GET">
+    <input type="text" name="query" required/>
+    <button type="submit">Поиск</button>
+</form>
+
     <div class="black-background">
     @include('partials.header')
 

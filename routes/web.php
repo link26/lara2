@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 
+
 Route::get('/', [NewsController::class, 'index']);
 
 //новости
@@ -69,9 +70,16 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout'); // Измененный
 
+//поиск
+use App\Http\Controllers\SearchController;
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+
 //админка
 use App\Http\Controllers\PageAdminController;
 use App\Http\Controllers\NewsAdminController;
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
