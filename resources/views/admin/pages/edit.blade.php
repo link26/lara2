@@ -1,10 +1,6 @@
 @extends('layouts.admin')
 
-<!-- Toast UI Editor CSS -->
-<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
-<!-- Toast UI Editor JS -->
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 
 
 
@@ -19,8 +15,18 @@
         </div>
 
         <div id="editor"></div>
-        <textarea id="editor-textarea" name="content" style="display:none;">{{ $page->content }}</textarea>
+        <textarea id="editor1" name="content" >{{ $page->content }}</textarea>
 
+        <script>
+
+            CKEDITOR.replace('editor1', {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+            });
+
+        </script>
 
 
         <div>

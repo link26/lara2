@@ -75,6 +75,17 @@ use App\Http\Controllers\SearchController;
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/brands/{id}', [BrandController::class, 'show'])->name('brands.show');
 
+//обработка загрузок
+use App\Http\Controllers\FileUploadController;
+Route::post('/upload', [FileUploadController::class, 'upload'])->name('upload');
+
+//самопис файлы
+use App\Http\Controllers\ImageController;
+
+Route::get('/image/upload', [ImageController::class, 'create']);
+Route::post('/image/upload', [ImageController::class, 'store']);
+
+
 //админка
 use App\Http\Controllers\PageAdminController;
 use App\Http\Controllers\NewsAdminController;
@@ -114,5 +125,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/pages/{page}', [PageAdminController::class, 'update'])->name('pages.update');
     Route::delete('/admin/pages/{page}', [PageAdminController::class, 'destroy'])->name('pages.destroy');
 
+    Route::get('/admin/files', [ImageController::class, 'index'])->name('admin.files.index');
+    Route::get('/admin/files/create', [ImageController::class, 'create'])->name('files.create');
+    Route::post('/admin/files', [ImageController::class, 'store'])->name('files.store');
+    Route::get('/admin/files/{files}/edit', [ImageController::class, 'edit'])->name('files.edit');
+    Route::put('/admin/files/{files}', [ImageController::class, 'update'])->name('files.update');
 
 });
+
+
